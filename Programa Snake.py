@@ -42,7 +42,7 @@ tela = pygame.display.set_mode((largura_tela, altura_tela))
 pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
 
-def jogar(): #ARACILLE E TAMARA
+def jogar():
     tamanho_alvo = (base, base)
     alvo_imagem = pygame.Surface(tamanho_alvo)
 
@@ -78,8 +78,43 @@ def jogar(): #ARACILLE E TAMARA
         for i in range(len(snake_x) - 1, 2):
             if colide(snake_x[0], snake_x[i], snake_y[0], snake_y[i]):
                 game_over(pontos)
-                return 0 #CONTINUAÇÃO
-       
+                return 0 
+        
+        if colide(snake_x[0], alvo_pos[0], snake_y[0], alvo_pos[1]):
+            pontos += 1
+            snake_x.append(700)
+            snake_y.append(700)
+            alvo_pos = (random.randint(0, largura_tela - base), random.randint(0, altura_tela - base))
+
+        if ((snake_x[0] < 0) or (snake_x[0] > (largura_tela - base))) or \
+                ((snake_y[0] < 0) or (snake_y[0] > (altura_tela - base))):
+            game_over(pontos)
+            return 0
+
+        i = len(snake_x) - 1
+        while i >= 1:
+            snake_x[i] = snake_x[i - 1]
+            snake_y[i] = snake_y[i - 1]
+            i -= 1
+
+        if direcao == 0:
+            snake_y[0] += base
+        elif direcao == 1:
+            snake_x[0] += base
+        elif direcao == 2:
+            snake_y[0] -= base
+        elif direcao == 3:
+            snake_x[0] -= base
+
+        tela.fill(white)
+
+        for i in range(0, len(snake_x)):
+            tela.blit(snake, (snake_x[i], snake_y[i]))
+
+        tela.blit(alvo_imagem, alvo_pos)
+        texto = fonte.render(str(pontos), True, black)
+        tela.blit(texto, tamanho_snake)
+        pygame.display.update() #CONTINUIÇÃO MARCUS CONFIGURAÇÃO
 
 def botoes_menu_principal():
     caixa1 = pygame.font.Font('freesansbold.ttf', 16).render('Jogar', True, black).get_rect()

@@ -138,8 +138,10 @@ def colide(x1, x2, y1, y2):
     
 def game_over(pontos): 
     texto = fonte.render('Pontuação final: '+str(pontos), True, black)
-    tela.blit(texto, (10, 270)) #Continua ai Diego
-
+    tela.blit(texto, (10, 270))
+    pygame.display.update()
+    pygame.time.wait(2000)
+    return 0
 
 def botoes_menu_principal():
     caixa1 = pygame.font.Font('freesansbold.ttf', 16).render('Jogar', True, black).get_rect()

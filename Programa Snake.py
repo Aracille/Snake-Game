@@ -28,7 +28,17 @@ largura_tela = 800
 altura_tela = 600
 
 black = (0, 0, 0)
-#MARCUS ADICIONA TUA PARTE AQUI
+white = (255, 255, 255)
+red = (255, 0, 0)
+green = (0, 200, 0)
+bright_red = (255, 0, 0)
+bright_green = (0, 255, 0)
+block_color = (53, 115, 255)
+
+base = 10
+
+fonte = pygame.font.SysFont('freesansbold.ttf', 30)
+tela = pygame.display.set_mode((largura_tela, altura_tela))
 pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
 

@@ -114,7 +114,22 @@ def jogar():
         tela.blit(alvo_imagem, alvo_pos)
         texto = fonte.render(str(pontos), True, black)
         tela.blit(texto, tamanho_snake)
-        pygame.display.update() #CONTINUIÇÃO MARCUS CONFIGURAÇÃO
+        pygame.display.update()
+        
+def configuracoes():
+    while True:
+        for event in pygame.event.get():
+            print(event)
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        tela.fill(red)
+
+        pygame.display.update()
+
+        clock.tick(10 * velocidade) # CONTINUAÇÃO JOÃO
+
 
 def botoes_menu_principal():
     caixa1 = pygame.font.Font('freesansbold.ttf', 16).render('Jogar', True, black).get_rect()

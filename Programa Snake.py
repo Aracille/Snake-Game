@@ -51,3 +51,19 @@ def botoes_menu_principal():
         pygame.draw.rect(tela, green, (150, 450, 100, 50))
     else:
         pygame.draw.rect(tela, green, (150, 450, 100, 50))
+#parte do João
+ if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+
+    tela.fill(white)
+
+    botoes_menu_principal()
+
+    pygame.display.update()
+
+    clock.tick(10 * velocidade)
+
+while True:
+    menu_principal()
+    

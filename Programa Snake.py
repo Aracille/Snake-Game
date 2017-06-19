@@ -40,3 +40,14 @@ def botoes_menu_principal():
     caixa2 = pygame.font.Font('freesansbold.ttf', 16).render('Configuracoes', True, black).get_rect()
     texto2 = pygame.font.Font('freesansbold.ttf', 16).render('Configuracoes', True, black)
     caixa2.center = (625, 475)
+    
+    mouse = pygame.mouse.get_pos()
+
+    if 150 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450:
+        pygame.draw.rect(tela, bright_green, (150, 450, 100, 50))
+        pygame.draw.rect(tela, red, (550, 450, 150, 50))
+    elif 550 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450:
+        pygame.draw.rect(tela, bright_red, (550, 450, 150, 50))
+        pygame.draw.rect(tela, green, (150, 450, 100, 50))
+    else:
+        pygame.draw.rect(tela, green, (150, 450, 100, 50))

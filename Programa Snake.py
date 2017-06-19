@@ -51,7 +51,18 @@ def botoes_menu_principal():
         pygame.draw.rect(tela, green, (150, 450, 100, 50))
     else:
         pygame.draw.rect(tela, green, (150, 450, 100, 50))
-#parte do João
+        pygame.draw.rect(tela, red, (550, 450, 150, 50))
+
+    if (150 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450) and (pygame.mouse.get_pressed()[0]):
+        pass
+    elif (550 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450) and (pygame.mouse.get_pressed()[0]):
+        pass
+
+    tela.blit(texto1, caixa1)
+    tela.blit(texto2, caixa2)
+
+def menu_principal():
+    for event in pygame.event.get():
  if event.type == pygame.QUIT:
             pygame.quit()
             quit()

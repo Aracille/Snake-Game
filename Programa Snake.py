@@ -135,6 +135,10 @@ def colide(x1, x2, y1, y2):
         return True
     else:
         return False
+    
+def game_over(pontos): 
+    texto = fonte.render('Pontuação final: '+str(pontos), True, black)
+    tela.blit(texto, (10, 270)) #Continua ai Diego
 
 
 def botoes_menu_principal():

@@ -42,6 +42,45 @@ tela = pygame.display.set_mode((largura_tela, altura_tela))
 pygame.display.set_caption('Snake')
 clock = pygame.time.Clock()
 
+def jogar(): #ARACILLE E TAMARA
+    tamanho_alvo = (base, base)
+    alvo_imagem = pygame.Surface(tamanho_alvo)
+
+    tamanho_snake = (base, base)
+
+    snake_x = [290, 290, 290, 290, 290]
+    snake_y = [290, 280, 270, 260, 250]
+    direcao = 0
+
+    pontos = 0
+
+    alvo_pos = (random.randint(0, largura_tela - base), random.randint(0, altura_tela - base))
+
+    alvo_imagem.fill(green)
+    snake = pygame.Surface(tamanho_snake)
+    snake.fill(red)
+
+    while True:
+        clock.tick(10 * velocidade)
+        for evento in pygame.event.get():
+            if evento.type == QUIT:
+                sys.exit(0)
+            elif evento.type == KEYDOWN:
+                if evento.key == K_UP and direcao != 0:
+                    direcao = 2 
+                elif evento.key == K_DOWN and direcao != 2:
+                    direcao = 0
+                elif evento.key == K_LEFT and direcao != 1:
+                    direcao = 3
+                elif evento.key == K_RIGHT and direcao != 3:
+                    direcao = 1
+
+        for i in range(len(snake_x) - 1, 2):
+            if colide(snake_x[0], snake_x[i], snake_y[0], snake_y[i]):
+                game_over(pontos)
+                return 0 #CONTINUAÇÃO
+       
+
 def botoes_menu_principal():
     caixa1 = pygame.font.Font('freesansbold.ttf', 16).render('Jogar', True, black).get_rect()
     texto1 = pygame.font.Font('freesansbold.ttf', 16).render('Jogar', True, black)

@@ -128,7 +128,13 @@ def configuracoes():
 
         pygame.display.update()
 
-        clock.tick(10 * velocidade) # CONTINUAÇÃO JOÃO
+        clock.tick(10 * velocidade)
+        
+def colide(x1, x2, y1, y2):
+    if x1 + base > x2 and x1 < x2 + base and y1 + base > y2 and y1 < y2 + base:
+        return True
+    else:
+        return False
 
 
 def botoes_menu_principal():

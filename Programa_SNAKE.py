@@ -103,3 +103,49 @@ def jogar(nivel, efeitos):
             ef.mixer.init()
             ef.mixer.music.load(arq_efeitos)
             ef.mixer.music.play()
+            game_over(pontos)
+            return 0
+        """ATUALIZA AS POSICOES DAS PARTES DA SNAKE COM BASE NA POSICAO DA FRENTE"""
+        i = len(snake_x) - 1
+        while i >= 1:
+            snake_x[i] = snake_x[i - 1]
+            snake_y[i] = snake_y[i - 1]
+            i -= 1
+        """MODIFICA A DIRECAO DA SNAKE"""
+        if direcao == 0:
+            snake_y[0] += base
+        elif direcao == 1:
+            snake_x[0] += base
+        elif direcao == 2:
+            snake_y[0] -= base
+        elif direcao == 3:
+            snake_x[0] -= base
+        tela.fill(white)
+        """PLOTA TODOS AS PARTES DA SNAKE NA TELA"""
+        for i in range(0, len(snake_x)):
+            tela.blit(snake, (snake_x[i], snake_y[i]))
+        tela.blit(alvo_imagem, alvo_pos)
+        texto = fonte.render(str(pontos), True, black)
+        tela.blit(texto, tamanho_snake)
+        pygame.display.update()
+def configuracoes(nivel, efeitos):
+    um = True
+    dois = False
+    tres = False
+    sair = False
+    musica = True
+    efeitos = efeitos
+    nivel = nivel
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+        tela.fill(white)
+        """MOSTRAR CAIXAS DE TEXTO DA VELOCIDADE DA SNAKE"""
+        caixa1 = pygame.font.Font('freesansbold.ttf', 16).render('Velocidade: ', True, black).get_rect()
+        texto1 = pygame.font.Font('freesansbold.ttf', 16).render('Velocidade: ', True, black)
+        caixa1.center = (100, 50)
+        caixa11 = pygame.font.Font('freesansbold.ttf', 16).render('1', True, black).get_rect()
+        texto11 = pygame.font.Font('freesansbold.ttf', 16).render('1', True, black)
+        caixa11.center = (200, 50)

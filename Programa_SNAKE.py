@@ -149,3 +149,49 @@ def configuracoes(nivel, efeitos):
         caixa11 = pygame.font.Font('freesansbold.ttf', 16).render('1', True, black).get_rect()
         texto11 = pygame.font.Font('freesansbold.ttf', 16).render('1', True, black)
         caixa11.center = (200, 50)
+        caixa12 = pygame.font.Font('freesansbold.ttf', 16).render('2', True, black).get_rect()
+        texto12 = pygame.font.Font('freesansbold.ttf', 16).render('2', True, black)
+        caixa12.center = (250, 50)
+        caixa13 = pygame.font.Font('freesansbold.ttf', 16).render('3', True, black).get_rect()
+        texto13 = pygame.font.Font('freesansbold.ttf', 16).render('3', True, black)
+        caixa13.center = (300, 50)
+        """MOSTRAR CAIXAS DE TEXTO DE MUSICA"""
+        caixa2 = pygame.font.Font('freesansbold.ttf', 16).render('Musica: ', True, black).get_rect()
+        texto2 = pygame.font.Font('freesansbold.ttf', 16).render('Musica: ', True, black)
+        caixa2.center = (100, 100)
+        caixa21 = pygame.font.Font('freesansbold.ttf', 16).render('Sim', True, black).get_rect()
+        texto21 = pygame.font.Font('freesansbold.ttf', 16).render('Sim', True, black)
+        caixa21.center = (200, 100)
+        caixa22 = pygame.font.Font('freesansbold.ttf', 16).render('Nao', True, black).get_rect()
+        texto22 = pygame.font.Font('freesansbold.ttf', 16).render('Nao', True, black)
+        caixa22.center = (250, 100)
+        """MOSTRAR CAIXAS DE TEXTO DOS EFEITOS SONOROS"""
+        caixa3 = pygame.font.Font('freesansbold.ttf', 16).render('Efeitos sonoros: ', True, black).get_rect()
+        texto3 = pygame.font.Font('freesansbold.ttf', 16).render('Efeitos sonoros: ', True, black)
+        caixa3.center = (100, 150)
+        caixa31 = pygame.font.Font('freesansbold.ttf', 16).render('Sim', True, black).get_rect()
+        texto31 = pygame.font.Font('freesansbold.ttf', 16).render('Sim', True, black)
+        caixa31.center = (200, 150)
+        caixa32 = pygame.font.Font('freesansbold.ttf', 16).render('Nao', True, black).get_rect()
+        texto32 = pygame.font.Font('freesansbold.ttf', 16).render('Nao', True, black)
+        caixa32.center = (250, 150)
+        """MOSTRAR CAIXA DE TEXTO DO BOTAO VOLTAR"""
+        caixa4 = pygame.font.Font('freesansbold.ttf', 16).render('Voltar', True, black).get_rect()
+        texto4 = pygame.font.Font('freesansbold.ttf', 16).render('Voltar', True, black)
+        caixa4.center = (100, 300)
+        mouse = pygame.mouse.get_pos()
+        """SELECIONA A OPCAO DE EFEITOS SONOROS"""
+        if 180 < mouse[0] < 220 and 130 < mouse[1] < 170:
+            pygame.draw.rect(tela, bright_green, (180, 140, 40, 20))
+            if pygame.mouse.get_pressed()[0]:
+                efeitos = True
+        if 230 < mouse[0] < 270 and 130 < mouse[1] < 170:
+            pygame.draw.rect(tela, bright_green, (230, 140, 40, 20))
+            if pygame.mouse.get_pressed()[0]:
+                efeitos = False
+        """SELECIONA O NIVEL DE JOGO"""
+        if 180 < mouse[0] < 220 and 30 < mouse[1] < 70:
+            pygame.draw.rect(tela, bright_green, (190, 40, 20, 20))
+            if pygame.mouse.get_pressed()[0]:
+                um = True; dois = False; tres = False
+        if 230 < mouse[0] < 270 and 30 < mouse[1] < 70:

@@ -57,3 +57,49 @@ def jogar(nivel, efeitos):
     pontos = 0
     alvo_pos = (random.randint(0, largura_tela - base), random.randint(0, altura_tela - base))
     alvo_imagem.fill(green)
+    snake = pygame.Surface(tamanho_snake)
+    snake.fill(red)
+    while True:
+        clock.tick(10 * velocidade)
+        for evento in pygame.event.get():
+            """CAPTURA A SELECAO DO BOTAO DE FECHAR"""
+            if evento.type == QUIT:
+                sys.exit(0)
+            elif evento.type == KEYDOWN:
+                """CAPTURA O ACIONAMENTO DOS BOTOES DIRECIONAIS"""
+                if evento.key == K_UP and direcao != 0:
+                    direcao = 2
+                elif evento.key == K_DOWN and direcao != 2:
+                    direcao = 0
+                elif evento.key == K_LEFT and direcao != 1:
+                    direcao = 3
+                elif evento.key == K_RIGHT and direcao != 3:
+                    direcao = 1
+        """CAPTURA COLISAO COM A SNAKE"""
+        for i in range(len(snake_x) - 1, 2):
+            """EFEITO SONORO DE GAME OVER"""
+            if colide(snake_x[0], snake_x[i], snake_y[0], snake_y[i]):
+                arq_efeitos = 'som2.m4a'
+                ef = pygame
+                ef.mixer.init()
+                ef.mixer.music.load(arq_efeitos)
+                ef.mixer.music.play()
+                game_over(pontos)
+                return 0
+        """CAPTURA COLISAO COM O ALVO"""
+        if colide(snake_x[0], alvo_pos[0], snake_y[0], alvo_pos[1]):
+            pontos += 1
+            """EFEITO SONORO DE PONTUAR"""
+            ef.mixer.music.play()
+            snake_x.append(700)
+            snake_y.append(700)
+            alvo_pos = (random.randint(0, largura_tela - base), random.randint(0, altura_tela - base))
+        """SE POSICAO DA FRENTE DA SNAKE COLIDIR A PAREDE"""
+        if ((snake_x[0] < 0) or (snake_x[0] > (largura_tela - base))) or \
+                ((snake_y[0] < 0) or (snake_y[0] > (altura_tela - base))):
+            """EFEITO SONORO DE GAME OVER"""
+            arq_efeitos = 'som2.ogg'
+            ef = pygame
+            ef.mixer.init()
+            ef.mixer.music.load(arq_efeitos)
+            ef.mixer.music.play()

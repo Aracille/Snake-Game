@@ -89,7 +89,7 @@ def jogar(nivel, efeitos):
             
             """EFEITO SONORO DE GAME OVER"""
             if colide(snake_x[0], snake_x[i], snake_y[0], snake_y[i]):
-                arq_efeitos = 'som2.m4a'
+                arq_efeitos = 'som2.ogg'
                 ef = pygame
                 ef.mixer.init()
                 ef.mixer.music.load(arq_efeitos)

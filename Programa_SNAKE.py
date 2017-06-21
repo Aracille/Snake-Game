@@ -241,3 +241,53 @@ def colide(x1, x2, y1, y2):
     if x1 + base > x2 and x1 < x2 + base and y1 + base > y2 and y1 < y2 + base:
         return True
     else:
+        return False
+def game_over(pontos):
+    """MOSTRA MENSAGEM DE FIM DE JOGO"""
+    texto = fonte.render('Pontuação final: ' + str(pontos), True, black)
+    tela.blit(texto, (10, 270))
+    pygame.display.update()
+    pygame.time.wait(4000)
+    return 0
+def botoes_menu_principal(nivel, efeitos):
+    """MOSTRAR BOTAO JOGAR"""
+    caixa1 = pygame.font.Font('freesansbold.ttf', 16).render('Jogar', True, black).get_rect()
+    texto1 = pygame.font.Font('freesansbold.ttf', 16).render('Jogar', True, black)
+    caixa1.center = (200, 475)
+    """MOSTRAR BOTAO CONFIGURACOES"""
+    caixa2 = pygame.font.Font('freesansbold.ttf', 16).render('Configuracoes', True, black).get_rect()
+    texto2 = pygame.font.Font('freesansbold.ttf', 16).render('Configuracoes', True, black)
+    caixa2.center = (625, 475)
+    mouse = pygame.mouse.get_pos()
+    """MUDAR A COR DO BOTAO AO PASSAR O MOUSE POR CIMA"""
+    if 150 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450:
+        pygame.draw.rect(tela, bright_green, (150, 450, 100, 50))
+        pygame.draw.rect(tela, red, (550, 450, 150, 50))
+    elif 550 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450:
+        pygame.draw.rect(tela, bright_red, (550, 450, 150, 50))
+        pygame.draw.rect(tela, green, (150, 450, 100, 50))
+    else:
+        pygame.draw.rect(tela, green, (150, 450, 100, 50))
+        pygame.draw.rect(tela, red, (550, 450, 150, 50))
+    """IR PARA A FUNCAO JOGAR OU CONFIGURACOES SE CLICAR EM CIMA DO BOTAO"""
+    if (150 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450) and (pygame.mouse.get_pressed()[0]):
+        jogar(nivel, efeitos)
+    elif (550 + 100 > mouse[0] > 150 and 450 + 50 > mouse[1] > 450) and (pygame.mouse.get_pressed()[0]):
+        nivel, efeitos = configuracoes(nivel, efeitos)
+    tela.blit(texto1, caixa1)
+    tela.blit(texto2, caixa2)
+    return nivel, efeitos
+def menu_principal(nivel, efeitos):
+    for event in pygame.event.get():
+        """CAPTURA A SELECAO DO BOTAO DE FECHAR"""
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+    tela.fill(white)
+    nivel, efeitos = botoes_menu_principal(nivel, efeitos)
+    pygame.display.update()
+    clock.tick(10 * 2)
+    return nivel, efeitos
+"""MAIN"""
+while True:
+    nivel, efeitos = menu_principal(nivel, efeitos)

@@ -195,3 +195,49 @@ def configuracoes(nivel, efeitos):
             if pygame.mouse.get_pressed()[0]:
                 um = True; dois = False; tres = False
         if 230 < mouse[0] < 270 and 30 < mouse[1] < 70:
+            pygame.draw.rect(tela, bright_green, (240, 40, 20, 20))
+            if pygame.mouse.get_pressed()[0]:
+                um = False; dois = True; tres = False
+        if 280 < mouse[0] < 320 and 30 < mouse[1] < 70:
+            pygame.draw.rect(tela, bright_green, (290, 40, 20, 20))
+            if pygame.mouse.get_pressed()[0]:
+                um = False; dois = False; tres = True
+        """ARMAZENA O NIVEL SELECIONADO"""
+        if um:
+            pygame.draw.rect(tela, bright_green, (190, 40, 20, 20))
+            nivel = 1
+        elif dois:
+            pygame.draw.rect(tela, bright_green, (240, 40, 20, 20))
+            nivel = 2
+        elif tres:
+            pygame.draw.rect(tela, bright_green, (290, 40, 20, 20))
+            nivel = 3
+        """MOSTRA A OPCAO DE EFEITOS SONOROS"""
+        if efeitos:
+            pygame.draw.rect(tela, bright_green, (180, 140, 40, 20))
+        else:
+            pygame.draw.rect(tela, bright_green, (230, 140, 40, 20))
+        if 75 < mouse[0] < 125 and 290 < mouse[1] < 310:
+            if pygame.mouse.get_pressed()[0]:
+                sair = True
+        """PLOTA AS CAIXAS DE TEXTO NA TELA"""
+        tela.blit(texto1, caixa1)
+        tela.blit(texto11, caixa11)
+        tela.blit(texto12, caixa12)
+        tela.blit(texto13, caixa13)
+        tela.blit(texto3, caixa3)
+        tela.blit(texto31, caixa31)
+        tela.blit(texto32, caixa32)
+        tela.blit(texto4, caixa4)
+        pygame.display.update()
+        clock.tick(10 * 2)
+        if sair:
+            break
+    print(nivel)
+    print(efeitos)
+    return (nivel, efeitos)
+def colide(x1, x2, y1, y2):
+    """VERIFICAR COLISAO"""
+    if x1 + base > x2 and x1 < x2 + base and y1 + base > y2 and y1 < y2 + base:
+        return True
+    else:
